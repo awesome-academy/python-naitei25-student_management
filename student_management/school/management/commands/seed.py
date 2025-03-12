@@ -23,34 +23,38 @@ class Command(BaseCommand):
 
         # Tạo 2 admin
         admin1 = Teacher.objects.create(
-            email=f"viethoan@gmail.com",
-            password="matkhau",
+            username=f"viethoan@gmail.com",
             first_name=f"Việt",
             last_name=f"Hoàn",
             phone=f"0111222333",
             role="admin",
         )
+        admin1.set_password("matkhau")
+        admin1.save()
 
         admin2 = Teacher.objects.create(
-            email=f"minhquan@gmail.com",
+            username=f"minhquan@gmail.com",
             password="matkhau",
             first_name=f"Minh",
             last_name=f"Quân",
             phone=f"0444555666",
             role="admin",
         )
+        admin2.set_password("matkhau")
+        admin2.save()
 
         # Tạo 10 giáo viên
         teachers = []
         for i in range(10):
             teacher = Teacher.objects.create(
-                email=f"giaovien{i}@gmail.com",
-                password="matkhau",
+                username=f"giaovien{i}@gmail.com",
                 first_name=f"Giáo{i}",
                 last_name=f"Viên{i}",
                 phone=f"012345678{i}",
                 role="teacher",
             )
+            teacher.set_password("matkhau")
+            teacher.save()
             teachers.append(teacher)
 
         # Tạo 15 học sinh

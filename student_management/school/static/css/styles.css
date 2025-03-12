@@ -47,8 +47,9 @@ body {
 :root {
   --primary: #043873;
   --secondary: #ffffff;
-  --primary-text: black;
-  --secondary-text: #ffffff;
+  --primary-text: white;
+  --secondary-text: #043873;
+  --primary-background: #ddd;
   --secondary-hover: rgba(0, 0, 0, 0.25);
   --primary-shadow: 4px 4px 10px rgba(4, 56, 115, 0.2);
 
@@ -66,5 +67,14 @@ body {
 body {
   color: var(--primary-text);
   font-size: var(--font-size);
-  background-color: #ddd;
+  background-color: var(--primary-background);
+}
+
+button,
+input,
+[tabindex] {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: var(--font-size);
 }

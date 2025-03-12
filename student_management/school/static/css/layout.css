@@ -16,7 +16,7 @@
   justify-content: space-between;
   padding: 0 20px;
   background-color: var(--primary);
-  color: var(--secondary-text);
+  color: var(--primary-text);
   box-shadow: var(--primary-shadow);
 }
 
@@ -123,6 +123,8 @@
 
 .header-item-icon {
   width: 30px;
+  display: flex;
+  justify-content: center;
 }
 
 .header-item:hover {
