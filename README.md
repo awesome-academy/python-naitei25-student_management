@@ -16,3 +16,8 @@ python manage.py createsuperuser
 
 - Nếu có dữ liệu rồi => xóa: python manage.py flush
 - Tạo seeder: python manage.py seed
+
+# Dịch ngôn ngữ
+
+django-admin makemessages -l en
+django-admin compilemessages

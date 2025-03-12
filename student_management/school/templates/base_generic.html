@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load i18n %} {% block title %}
+    <title>{% trans "Quản lý học sinh" %}</title>
+    {% endblock %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Add additional CSS in static file -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}" />
+  </head>
+  <body>
+    <div class="layout">
+      <div class="layout-header">
+        {% include 'school/includes/header.html' %}
+      </div>
+      <div class="layout-sidebar">
+        {% include 'school/includes/sidebar.html' %}
+      </div>
+      <div class="layout-content">{% block content %}{% endblock %}</div>
+    </div>
+  </body>
+</html>
