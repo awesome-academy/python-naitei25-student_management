@@ -1,0 +1,48 @@
+{% load i18n %} {% load static %}
+<div class="header-text">
+  {% trans "Xin chào" %}
+  <span class="header-username-secondary">{{teacher_name}}</span>
+  <span>, {% trans "chúc bạn một ngày tốt lành!!!" %}</span>
+</div>
+
+<div class="header-avatar-container">
+  <div class="header-avatar" onclick="handleShowAvatarMenu()">
+    {% if avatar %}
+    <img src="{{ avatar }}" alt="Avatar" />
+    {% else %}
+    <img src="{% static 'images/avt.jpg' %}" alt="Avatar" />
+    {% endif %}
+  </div>
+
+  <div class="header-avatar-icon"></div>
+
+  <div class="header-item-list">
+    <div class="header-info" id="4">
+      <div class="header-avatar">
+        {% if avatar %}
+        <img src="{{ avatar }}" alt="Avatar" />
+        {% else %}
+        <img src="{% static 'images/avt.jpg' %}" alt="Avatar" />
+        {% endif %}
+      </div>
+      <div class="header-user-info">
+        <div class="header-username">{{teacher_name}}</div>
+        <div class="header-email">{{teacher_email}}</div>
+      </div>
+    </div>
+
+    <div class="header-item">
+      <span class="header-item-icon"><i class="fa-solid fa-language"></i></span>
+      <span class="header-item-name">{% trans "Ngôn ngữ: " %}{{language}}</span>
+    </div>
+
+    <div class="header-item">
+      <span class="header-item-icon"
+        ><i class="fa-solid fa-right-from-bracket"></i
+      ></span>
+      <span class="header-item-name">{% trans "Đăng xuất" %}</span>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/layout.js' %}"></script>
