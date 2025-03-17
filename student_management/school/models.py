@@ -76,7 +76,11 @@ class Subject(models.Model):
 # Lớp - Học sinh
 class ClassStudent(models.Model):
     classroom = models.ForeignKey(Class, on_delete=models.PROTECT)
-    semester = models.ForeignKey(Semester, on_delete=models.SET_NULL)
+    semester = models.ForeignKey(
+        Semester,
+        on_delete=models.SET_NULL,
+        null=True,
+    )
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     late_time = models.IntegerField(default=TIME_DEFAULT)  # Số lần đi muộn
     absent_time = models.IntegerField(
@@ -91,7 +95,11 @@ class ClassStudent(models.Model):
 # Lớp - Giáo viên
 class ClassTeacher(models.Model):
     classroom = models.ForeignKey(Class, on_delete=models.PROTECT)
-    semester = models.ForeignKey(Semester, on_delete=models.SET_NULL)
+    semester = models.ForeignKey(
+        Semester,
+        on_delete=models.SET_NULL,
+        null=True,
+    )
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     is_homeroom = models.BooleanField(
@@ -133,7 +141,11 @@ class ClassTeacher(models.Model):
 # Điểm số môn học
 class Grade(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    semester = models.ForeignKey(Semester, on_delete=models.SET_NULL)
+    semester = models.ForeignKey(
+        Semester,
+        on_delete=models.SET_NULL,
+        null=True,
+    )
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     oral_score = models.DecimalField(
         max_digits=SCORE_MAX_DIGITS,
@@ -179,7 +191,11 @@ class Grade(models.Model):
 # Xếp loại
 class Classification(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    semester = models.ForeignKey(Semester, on_delete=models.SET_NULL)
+    semester = models.ForeignKey(
+        Semester,
+        on_delete=models.SET_NULL,
+        null=True,
+    )
     gpa = models.DecimalField(
         max_digits=SCORE_MAX_DIGITS,
         decimal_places=SCORE_DECIMAL_PLACES,
@@ -250,7 +266,7 @@ def update_gpa(sender, instance, **kwargs):
     if total_subjects == subjects_with_score and total_subjects > 0:
         avg_gpa = (
             Grade.objects.filter(student=student, semester=semester).aggregate(
-                avg_gpa=models.Avg("final_score")
+                avg_gpa=models.Avg("final_grade")
             )["avg_gpa"]
             or 0
         )
