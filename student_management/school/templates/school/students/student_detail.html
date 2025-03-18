@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %} {% load static %} {% load i18n %} {% block title %}
+<title>{% trans "Danh sách học sinh" %}</title>
+
+{% endblock %} {% block css %}
+<link rel="stylesheet" href="{% static 'css\school\student.css' %}" />
+
+{% endblock %} {% block content %}
+<div class="student-detail-page">{{student.first_name}} {{student.last_name}}</div>
+{% endblock %}

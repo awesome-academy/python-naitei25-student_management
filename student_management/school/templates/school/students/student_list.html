@@ -10,10 +10,33 @@
 
 {% block content %}
 <div class="student-list-page">
-  {% for student in students %}
-  <div>{{student.first_name}} {{student.last_name}}</div>
-  {% empty %}
-  <p>{% trans "Lớp không có học sinh." %}</p>
-  {% endfor %}
+  <div class="student-action">
+    <form class="student-search" method="GET" action="{% url 'student-list' class_id semester_id %}">
+      <input type="text" name="student_name" placeholder="{% trans 'Nhập tên học sinh' %}" value="{{ query }}" />
+      <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+
+    <a class="primary-btn medium-btn default-btn all-btn" href="{% url 'student-list' class_id semester_id %}"
+      >{% trans "Tất cả" %}</a
+    >
+  </div>
+
+  <table class="student-table">
+    <thead>
+      {% include "school\students\student_list_header.html" %}
+    </thead>
+
+    <tbody>
+      {% for student in students %}
+      <tr>
+        {% include "school\students\student_item.html" with student=student index=forloop.counter %}
+      </tr>
+      {% empty %}
+      <tr>
+        <p>{% trans "Lớp không có học sinh." %}</p>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}
