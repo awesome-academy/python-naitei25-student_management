@@ -1,0 +1,48 @@
+{% extends "base_generic.html" %} {% load static %} {% load i18n %} {% block title %}
+<title>{% trans "Chấm điểm" %}</title>
+{% endblock %} {% block css %}
+<link rel="stylesheet" href="{% static 'css\school\student.css' %}" />
+<link rel="stylesheet" href="{% static 'css\school\grade.css' %}" />
+{% endblock %} {% block content %}
+<div class="grade-page">
+  <div class="student-action">
+    <form class="student-search" method="GET" action="{% url 'grade' class_id semester_id subject_id %}">
+      <input type="text" name="student_name" placeholder="{% trans 'Nhập tên học sinh' %}" value="{{ query }}" />
+      <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+
+    <a class="primary-btn medium-btn default-btn all-btn" href="{% url 'grade' class_id semester_id subject_id %}"
+      >{% trans "Tất cả" %}</a
+    >
+
+    <div class="grade-date">
+      <span>{{current_date}}</span>
+    </div>
+  </div>
+
+  <form method="post" action="{% url 'grade-update' %}">
+    {% csrf_token %} {{ formset.management_form }}
+    <table class="grade-table">
+      <thead>
+        {% include "school\grades\grade_list_header.html" %}
+      </thead>
+
+      <tbody>
+        {% for form, grade in form_grade_pairs %}
+        <tr>
+          {% include "school\grades\grade_item.html" with form=form grade=grade index=forloop.counter %}
+        </tr>
+        {% empty %}
+        <tr>
+          <p>{% trans "Lớp không có học sinh." %}</p>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="grade-btn">
+      <button type="submit" class="default-btn primary-btn large-btn">{% trans "Chấm điểm" %}</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

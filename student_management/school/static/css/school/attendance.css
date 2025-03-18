@@ -96,9 +96,13 @@
 .attendance-table td:nth-child(8) {
   width: 200px;
   text-align: center;
+
+  select {
+    color: var(--secondary-text);
+  }
 }
 
-.tracking-btn {
+.grade-btn {
   width: 100%;
   display: flex;
   justify-content: flex-end;

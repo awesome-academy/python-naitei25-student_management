@@ -1,0 +1,17 @@
+{% load static %} {% load i18n %} {% block css %}
+<link rel="stylesheet" href="{% static 'css\school\attendance.css' %}" />
+{% endblock %}
+
+<td>{{ index }}</td>
+<td>
+  <a class="grade-item-name" href="{% url 'student-detail' grade.classstudent.student.id %}"
+    >{{grade.classstudent.student.first_name}} {{grade.classstudent.student.last_name}}</a
+  >
+</td>
+<td>{{ grade.classstudent.student.id }}</td>
+<td>{{ form.oral_score }}</td>
+<td>{{ form.fifteen_min_score }}</td>
+<td>{{ form.one_period_score }}</td>
+<td>{{ form.midterm_score }}</td>
+<td>{{ form.final_score }}{{ form.classstudent_id }}</td>
+<td>{{ grade.final_grade|default:"Chưa có" }}</td>

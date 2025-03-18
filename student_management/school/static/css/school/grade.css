@@ -1,0 +1,101 @@
+.grade-page {
+  width: 100%;
+  height: fit-content;
+  padding: 20px;
+}
+
+.grade-date {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--secondary-text);
+  font-weight: bold;
+}
+
+.grade-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--primary);
+  color: var(--secondary-text);
+  background-color: var(--secondary);
+}
+
+.grade-table tr {
+  height: 60px;
+}
+
+.grade-table th,
+.grade-table td {
+  border: 1px solid var(--primary);
+  padding: 10px;
+  text-align: left;
+}
+
+.grade-table th {
+  font-size: calc(var(--font-size) + 2px);
+  font-weight: bold;
+  background-color: var(--secondary);
+}
+
+.grade-table tr:nth-child(odd) {
+  background-color: var(--primary-background);
+}
+
+.grade-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Stt */
+.grade-table th:first-child,
+.grade-table td:first-child {
+  width: 50px;
+  text-align: center;
+}
+
+/* Họ tên */
+.grade-item-name {
+  color: var(--secondary-text);
+}
+
+.grade-item-name:hover {
+  font-weight: bold;
+}
+
+/* MSHS */
+.grade-table th:nth-child(3),
+.grade-table td:nth-child(3) {
+  width: 150px;
+}
+
+.grade-table th:nth-child(4),
+.grade-table td:nth-child(4),
+.grade-table th:nth-child(5),
+.grade-table td:nth-child(5),
+.grade-table th:nth-child(6),
+.grade-table td:nth-child(6),
+.grade-table th:nth-child(7),
+.grade-table td:nth-child(7),
+.grade-table th:nth-child(8),
+.grade-table td:nth-child(8) {
+  input {
+    width: 60px;
+    color: var(--secondary-text);
+  }
+  width: 70px;
+  text-align: center;
+}
+
+.grade-table th:nth-child(9),
+.grade-table td:nth-child(9) {
+  width: 100px;
+  text-align: center;
+}
+
+.tracking-btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 15px;
+  padding-right: 15px;
+}

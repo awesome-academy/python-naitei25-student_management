@@ -6,12 +6,12 @@
 {% endblock %} {% block content %}
 <div class="attendance-tracking-page">
   <div class="student-action">
-    <form class="student-search" method="GET" action="{% url 'student-list' class_id semester_id %}">
+    <form class="student-search" method="GET" action="{% url 'attendance-tracking' class_id semester_id %}">
       <input type="text" name="student_name" placeholder="{% trans 'Nhập tên học sinh' %}" value="{{ query }}" />
       <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 
-    <a class="primary-btn medium-btn default-btn all-btn" href="{% url 'student-list' class_id semester_id %}"
+    <a class="primary-btn medium-btn default-btn all-btn" href="{% url 'attendance-tracking' class_id semester_id %}"
       >{% trans "Tất cả" %}</a
     >
 
