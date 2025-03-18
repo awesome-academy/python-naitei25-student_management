@@ -1,0 +1,107 @@
+.attendance-tracking-page {
+  width: 100%;
+  height: fit-content;
+  padding: 20px;
+}
+
+.attendance-date {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--secondary-text);
+  font-weight: bold;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--primary);
+  color: var(--secondary-text);
+  background-color: var(--secondary);
+}
+
+.attendance-table tr {
+  height: 60px;
+}
+
+.attendance-table th,
+.attendance-table td {
+  border: 1px solid var(--primary);
+  padding: 10px;
+  text-align: left;
+}
+
+.attendance-table th {
+  font-size: calc(var(--font-size) + 2px);
+  font-weight: bold;
+  background-color: var(--secondary);
+}
+
+.attendance-table tr:nth-child(odd) {
+  background-color: var(--primary-background);
+}
+
+.attendance-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Stt */
+.attendance-table th:first-child,
+.attendance-table td:first-child {
+  width: 50px;
+  text-align: center;
+}
+
+/* Ảnh đại diện */
+.attendance-table th:nth-child(2),
+.attendance-table td:nth-child(2) {
+  width: 140px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.attendance-avatar {
+  height: 55px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.attendance-item-name {
+  color: var(--secondary-text);
+}
+
+.attendance-item-name:hover {
+  font-weight: bold;
+}
+
+/* MSHS */
+.attendance-table th:nth-child(4),
+.attendance-table td:nth-child(4) {
+  width: 150px;
+}
+
+.attendance-table th:nth-child(5),
+.attendance-table td:nth-child(5),
+.attendance-table th:nth-child(6),
+.attendance-table td:nth-child(6),
+.attendance-table th:nth-child(7),
+.attendance-table td:nth-child(7) {
+  width: 100px;
+  text-align: center;
+}
+
+.attendance-table th:nth-child(8),
+.attendance-table td:nth-child(8) {
+  width: 200px;
+  text-align: center;
+}
+
+.tracking-btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 15px;
+  padding-right: 15px;
+}

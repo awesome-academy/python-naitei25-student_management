@@ -19,7 +19,10 @@
     <span class="sidebar-item-name">{% trans "Danh sách học sinh" %}</span>
   </a>
 
-  <a class="sidebar-item" href="">
+  <a
+    class="sidebar-item {% if 'attendance-tracking' in request.resolver_match.url_name %}active{% endif %}"
+    href="{% url 'attendance-tracking' class_id semester_id %}"
+  >
     <span class="sidebar-item-icon"><i class="fa-solid fa-list-check"></i></span>
     <span class="sidebar-item-name">{% trans "Điểm danh" %}</span>
   </a>

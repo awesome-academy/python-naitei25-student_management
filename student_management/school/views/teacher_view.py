@@ -4,8 +4,13 @@ from django.views.generic import ListView, DetailView
 from django.utils.translation import gettext_lazy as _
 from django.utils.timezone import now
 from django.db.models import Q
+from django.forms import formset_factory
 
-from school.models import Class, Student, Subject, ClassTeacher, Semester
+from school.models import Attendance
+
+
+from school.models import Class, Student, Subject, Semester, ClassTeacher, ClassStudent
+from school.forms import AttendanceForm, AttendanceFormSet
 
 
 class ClassListView(LoginRequiredMixin, ListView):
@@ -112,7 +117,6 @@ class StudentListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context["class_id"] = self.kwargs.get("class_id")
         context["semester_id"] = self.kwargs.get("semester_id")
-
         context["subject_id"] = self.request.session.get("subject_id")
         context["is_homeroom"] = self.is_homeroom
         return context
@@ -128,4 +132,80 @@ class StudentDetailView(LoginRequiredMixin, DetailView):
         context["class_id"] = self.request.session.get("class_id") or None
         context["semester_id"] = self.request.session.get("semester_id") or None
         context["subject_id"] = self.request.session.get("subject_id") or None
+        return context
+
+
+class AttendancesView(LoginRequiredMixin, ListView):
+    model = Attendance
+    template_name = "school/attendances/attendance_tracking.html"
+    context_object_name = "attendances"
+
+    def dispatch(self, request, *args, **kwargs):
+        if "class_id" in kwargs:
+            request.session["class_id"] = kwargs["class_id"]
+
+        if "semester_id" in kwargs:
+            request.session["semester_id"] = kwargs["semester_id"]
+
+        subject = Subject.objects.filter(
+            classteacher__classroom_id=request.session["class_id"],
+            classteacher__semester__id=request.session["semester_id"],
+            classteacher__teacher=self.request.user,
+        ).first()
+        request.session["subject_id"] = subject.id
+
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        class_id = self.kwargs.get("class_id")
+        semester_id = self.kwargs.get("semester_id")
+        class_teacher = ClassTeacher.objects.filter(
+            classroom__id=class_id,
+            semester__id=semester_id,
+            teacher=self.request.user,
+        ).get()
+        self.is_homeroom = class_teacher.is_homeroom
+
+        class_students = ClassStudent.objects.filter(
+            classroom__id=class_id, semester__id=semester_id
+        )
+
+        query = self.request.GET.get("student_name", "")
+        if query:
+            class_students = class_students.filter(
+                Q(student__first_name__icontains=query)
+                | Q(student__last_name__icontains=query)
+            )
+
+        attendance_ids = []
+        for class_student in class_students:
+            attendance, created = Attendance.objects.get_or_create(
+                classstudent=class_student, date=now().date()
+            )
+            attendance_ids.append(attendance.id)
+
+        return Attendance.objects.filter(id__in=attendance_ids)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        attendances = self.get_queryset()
+
+        AttendanceFormSet = formset_factory(AttendanceForm, extra=0)
+        formset = AttendanceFormSet(
+            initial=[
+                {"classstudent_id": a.classstudent.id, "status": a.status}
+                for a in attendances
+            ]
+        )
+
+        form_attendance_pairs = zip(formset.forms, attendances)
+
+        context["current_date"] = now().date()
+        context["class_id"] = self.kwargs.get("class_id")
+        context["semester_id"] = self.kwargs.get("semester_id")
+        context["subject_id"] = self.request.session.get("subject_id")
+        context["is_homeroom"] = self.is_homeroom
+        context["formset"] = formset
+        context["form_attendance_pairs"] = form_attendance_pairs
+
         return context

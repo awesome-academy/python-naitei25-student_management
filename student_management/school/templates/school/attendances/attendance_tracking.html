@@ -1,0 +1,48 @@
+{% extends "base_generic.html" %} {% load static %} {% load i18n %} {% block title %}
+<title>{% trans "Điểm danh" %}</title>
+{% endblock %} {% block css %}
+<link rel="stylesheet" href="{% static 'css\school\student.css' %}" />
+<link rel="stylesheet" href="{% static 'css\school\attendance.css' %}" />
+{% endblock %} {% block content %}
+<div class="attendance-tracking-page">
+  <div class="student-action">
+    <form class="student-search" method="GET" action="{% url 'student-list' class_id semester_id %}">
+      <input type="text" name="student_name" placeholder="{% trans 'Nhập tên học sinh' %}" value="{{ query }}" />
+      <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+
+    <a class="primary-btn medium-btn default-btn all-btn" href="{% url 'student-list' class_id semester_id %}"
+      >{% trans "Tất cả" %}</a
+    >
+
+    <div class="attendance-date">
+      <span>{{current_date}}</span>
+    </div>
+  </div>
+
+  <form method="post" action="{% url 'tracking' %}">
+    {% csrf_token %} {{ formset.management_form }}
+    <table class="attendance-table">
+      <thead>
+        {% include "school\attendances\attendance_list_header.html" %}
+      </thead>
+
+      <tbody>
+        {% for form, attendance in form_attendance_pairs %}
+        <tr>
+          {% include "school\attendances\attendance_item.html" with form=form attendance=attendance index=forloop.counter %}
+        </tr>
+        {% empty %}
+        <tr>
+          <p>{% trans "Lớp không có học sinh." %}</p>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="tracking-btn">
+      <button type="submit" class="default-btn primary-btn large-btn">{% trans "Điểm danh" %}</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

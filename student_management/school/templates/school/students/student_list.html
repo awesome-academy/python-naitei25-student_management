@@ -1,14 +1,9 @@
-{% extends "base_generic.html" %} {% load static %} {% load i18n %} 
-
-{% block title %}
+{% extends "base_generic.html" %} {% load static %} {% load i18n %} {% block title %}
 <title>{% trans "Danh sách học sinh" %}</title>
-{% endblock %} 
-
-{% block css %}
+{% endblock %} {% block css %}
 <link rel="stylesheet" href="{% static 'css\school\student.css' %}" />
-{% endblock %} 
+{% endblock %} {% block content %}
 
-{% block content %}
 <div class="student-list-page">
   <div class="student-action">
     <form class="student-search" method="GET" action="{% url 'student-list' class_id semester_id %}">

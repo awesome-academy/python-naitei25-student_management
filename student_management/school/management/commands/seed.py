@@ -109,7 +109,7 @@ class Command(BaseCommand):
                     teacher_index = teacher_indexs.pop(random_number)
                     teacher = teachers[teacher_index]
                     is_homeroom = False
-                    if len(teacher_indexs) == 10:
+                    if len(teacher_indexs) == 8:
                         is_homeroom = True
 
                     ClassTeacher.objects.create(
