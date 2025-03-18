@@ -57,7 +57,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "school.urls"
+ROOT_URLCONF = "student_management.urls"
 
 TEMPLATES = [
     {
@@ -148,3 +148,4 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 AUTH_USER_MODEL = "school.Teacher"
+LOGIN_URL = "login/"

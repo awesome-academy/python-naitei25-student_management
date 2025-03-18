@@ -1,0 +1,13 @@
+{% load static %} {% load i18n %} {% block css %}
+<link rel="stylesheet" href="{% static 'css\school\class.css' %}" />
+{% endblock %}
+
+<a href="{% url 'student-list' class.id class.semester_id %}" class="class-item">
+  <div class="class-item-name">{{class.name}}</div>
+  <div class="class-item-count">{% trans "Sĩ số:" %} {{class.student_count}}</div>
+  <div class="class-item-semester">{{class.semester_name}}</div>
+  <div class="class-item-subject">{% trans "Môn giảng dạy:" %} <span>{{class.subject_name}}</span></div>
+  {% if class.is_homeroom %}
+  <div class="class-item-homeroom"><i class="fa-solid fa-flag"></i></div>
+  {% endif %}
+</a>

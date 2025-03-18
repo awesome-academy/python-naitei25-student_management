@@ -5,15 +5,6 @@ from django.utils.translation import gettext_lazy as _
 from ..constants import Role
 
 
-def index(request):
-
-    context = {
-        "language": "Tiếng Việt",
-    }
-
-    return render(request, "index.html", context=context)
-
-
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")

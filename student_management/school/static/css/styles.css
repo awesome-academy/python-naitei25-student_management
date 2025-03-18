@@ -78,3 +78,8 @@ input,
   background-color: transparent;
   font-size: var(--font-size);
 }
+
+a {
+  text-decoration: none;
+  color: var(--primary-text);
+}

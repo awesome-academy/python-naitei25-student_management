@@ -18,12 +18,14 @@
   background-color: var(--primary);
   color: var(--primary-text);
   box-shadow: var(--primary-shadow);
+  z-index: 100;
 }
 
 .header-avatar-container {
   position: relative;
   width: fit-content;
   height: fit-content;
+  z-index: 100;
 }
 
 .header-avatar img {
@@ -269,5 +271,7 @@
 
 /* Content */
 .layout-content {
+  width: 100%;
   padding: 15px;
+  z-index: 0;
 }

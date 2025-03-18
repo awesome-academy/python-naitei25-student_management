@@ -97,20 +97,21 @@ class Command(BaseCommand):
             name=f"Kỳ 2 năm 2024", start_date="2025-01-16", end_date="2025-05-01"
         )
 
-        semesters.extend([semester1, semester2, semester3])
+        semesters.extend([semester1, semester2, semester3, semester4])
 
         # Gán giáo viên vào lớp
         for cls in classes:
             for semester in semesters:
                 teacher_indexs = list(range(10))
-                random_number = random.randint(0, len(teacher_indexs) - 1)
-                teacher_index = teacher_indexs.pop(random_number)
-                teacher = teachers[teacher_index]
-                is_homeroom = False
-                if len(teacher_indexs) == 10:
-                    is_homeroom = True
 
                 for subject in subjects:
+                    random_number = random.randint(0, len(teacher_indexs) - 1)
+                    teacher_index = teacher_indexs.pop(random_number)
+                    teacher = teachers[teacher_index]
+                    is_homeroom = False
+                    if len(teacher_indexs) == 10:
+                        is_homeroom = True
+
                     ClassTeacher.objects.create(
                         classroom=cls,
                         semester=semester,
@@ -119,6 +120,7 @@ class Command(BaseCommand):
                         is_homeroom=is_homeroom,
                     )
 
+        semesters.pop()
         # Gán học sinh vào lớp
         for student in students:
             class_student = random.choice(classes)
