@@ -1,0 +1,35 @@
+{% load i18n %} {% load static %}
+<div class="sidebar-logo">H&Q</div>
+
+<div class="sidebar-item-list">
+  <a class="sidebar-item active" href="">
+    <span class="sidebar-item-icon"><i class="fa-solid fa-school"></i></span>
+    <span class="sidebar-item-name">{% trans "Danh sách lớp học" %}</span>
+  </a>
+
+  <a class="sidebar-item" href="">
+    <span class="sidebar-item-icon"><i class="fa-solid fa-list-ul"></i></span>
+    <span class="sidebar-item-name">{% trans "Danh sách học sinh" %}</span>
+  </a>
+
+  <a class="sidebar-item" href="">
+    <span class="sidebar-item-icon"
+      ><i class="fa-solid fa-list-check"></i
+    ></span>
+    <span class="sidebar-item-name">{% trans "Điểm danh" %}</span>
+  </a>
+
+  {% if is_homeroom_teacher %}
+  <a class="sidebar-item" href="">
+    <span class="sidebar-item-icon"><i class="fa-solid fa-pen-ruler"></i></span>
+    <span class="sidebar-item-name">{% trans "Chấm điểm" %}</span>
+  </a>
+  {% endif %} {% if is_subject_teacher %}
+  <a class="sidebar-item" href="">
+    <span class="sidebar-item-icon"
+      ><i class="fa-solid fa-ranking-star"></i
+    ></span>
+    <span class="sidebar-item-name">{% trans "Thống kê thành tích" %}</span>
+  </a>
+  {% endif %}
+</div>

@@ -8,19 +8,60 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-14 16:34+0700\n"
+"POT-Creation-Date: 2025-03-17 01:26+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: .\student_management\school\models.py:119
+
+#: .\student_management\school\models.py:127
 msgid "Mỗi lớp chỉ được có một giáo viên chủ nhiệm."
 msgstr "Each class can only have one homeroom teacher."
 
-#: .\student_management\school\models.py:124
+#: .\student_management\school\models.py:132
 msgid "Chỉ có giáo viên mới có thể được chỉ định vào lớp học."
 msgstr "Only teachers can be assigned to the class."
+
+#: .\student_management\school\templates\base_generic.html:5
+msgid "Quản lý học sinh"
+msgstr "Student Management"
+
+#: .\student_management\school\templates\school\includes\header.html:3
+msgid "Xin chào"
+msgstr "Hello"
+
+#: .\student_management\school\templates\school\includes\header.html:5
+msgid "chúc bạn một ngày tốt lành!!!"
+msgstr "Have a nice day!!!"
+
+#: .\student_management\school\templates\school\includes\header.html:36
+msgid "Ngôn ngữ: "
+msgstr "Language: "
+
+#: .\student_management\school\templates\school\includes\header.html:43
+msgid "Đăng xuất"
+msgstr "Logout"
+
+#: .\student_management\school\templates\school\includes\sidebar.html:7
+msgid "Danh sách lớp học"
+msgstr "Class list"
+
+#: .\student_management\school\templates\school\includes\sidebar.html:12
+msgid "Danh sách học sinh"
+msgstr "Student list"
+
+#: .\student_management\school\templates\school\includes\sidebar.html:19
+msgid "Điểm danh"
+msgstr "Attendance"
+
+#: .\student_management\school\templates\school\includes\sidebar.html:25
+msgid "Chấm điểm"
+msgstr "Grading"
+
+#: .\student_management\school\templates\school\includes\sidebar.html:32
+msgid "Thống kê thành tích"
+msgstr "Performance statistics"
