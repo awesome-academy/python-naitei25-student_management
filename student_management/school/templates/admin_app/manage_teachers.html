@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Manage Teachers</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Teacher</button>
+</form>
+<ul>
+    {% for teacher in teachers %}
+        <li>
+            {{ teacher.first_name }} {{ teacher.last_name }} ({{ teacher.role }}) 
+            (<a href="{% url 'edit_teacher' teacher.id %}">Edit</a> | 
+            <a href="{% url 'delete_teacher' teacher.id %}">Delete</a>)
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
