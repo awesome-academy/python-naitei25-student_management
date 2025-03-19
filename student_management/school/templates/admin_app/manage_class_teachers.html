@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Manage Class Teachers</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Teacher to Class</button>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Teacher Name</th>
+            <th>Class</th>
+            <th>Is Homeroom</th>
+            <th>Can Manage</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for class_teacher in class_teachers %}
+        <tr>
+            <td>{{ class_teacher.teacher }}</td>
+            <td>{{ class_teacher.classroom }}</td>
+            <td>{{ class_teacher.is_homeroom|yesno:"Yes,No" }}</td>
+            <td>{{ class_teacher.can_manage|yesno:"Yes,No" }}</td>
+            <td>
+                <a href="{% url 'edit_class_teacher' pk=class_teacher.id %}">Edit</a> |
+                <a href="{% url 'delete_class_teacher' pk=class_teacher.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Manage Class Students</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Student to Class</button>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Class</th>
+            <th>Late Time</th>
+            <th>Absent Time</th>
+            <th>Excused Time</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for class_student in class_students %}
+        <tr>
+            <td>{{ class_student.student }}</td>
+            <td>{{ class_student.classroom }}</td>
+            <td>{{ class_student.late_time }}</td>
+            <td>{{ class_student.absent_time }}</td>
+            <td>{{ class_student.excused_time }}</td>
+            <td>
+                <a href="{% url 'edit_class_student' pk=class_student.id %}">Edit</a> |
+                <a href="{% url 'delete_class_student' pk=class_student.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
