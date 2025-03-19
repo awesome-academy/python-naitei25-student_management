@@ -1,0 +1,38 @@
+.default-btn {
+  width: fit-content;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Màu sắc */
+.primary-btn {
+  background-color: var(--primary);
+  color: var(--primary-text);
+}
+
+.secondary-btn {
+  background-color: var(--secondary);
+  color: var(--secondary-text);
+}
+
+.secondary-btn:hover,
+.secondary-btn.active,
+.primary-btn:hover,
+.primary-btn.active {
+  opacity: 0.8;
+}
+
+/* Kích cỡ */
+.small-btn {
+  padding: 5px 8px;
+}
+
+.medium-btn {
+  padding: 8px 12px;
+}
+
+.large-btn {
+  padding: 10px 16px;
+}

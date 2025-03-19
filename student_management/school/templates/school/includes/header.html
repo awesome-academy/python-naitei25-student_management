@@ -1,7 +1,7 @@
 {% load i18n %} {% load static %}
 <div class="header-text">
   {% trans "Xin chào" %}
-  <span class="header-username-secondary">{{teacher_name}}</span>
+  <span class="header-username-secondary">{{ request.user.first_name }} {{ request.user.last_name }}</span>
   <span>, {% trans "chúc bạn một ngày tốt lành!!!" %}</span>
 </div>
 
@@ -19,15 +19,15 @@
   <div class="header-item-list">
     <div class="header-info" id="4">
       <div class="header-avatar">
-        {% if avatar %}
-        <img src="{{ avatar }}" alt="Avatar" />
+        {% if request.user.avatar %}
+        <img src="{{ request.user.avatar}}" alt="Avatar" />
         {% else %}
         <img src="{% static 'images/avt.jpg' %}" alt="Avatar" />
         {% endif %}
       </div>
       <div class="header-user-info">
-        <div class="header-username">{{teacher_name}}</div>
-        <div class="header-email">{{teacher_email}}</div>
+        <div class="header-username">{{ request.user.first_name }} {{ request.user.last_name }}</div>
+        <div class="header-email">{{ request.user.username }}</div>
       </div>
     </div>
 
@@ -36,12 +36,13 @@
       <span class="header-item-name">{% trans "Ngôn ngữ: " %}{{language}}</span>
     </div>
 
-    <div class="header-item">
-      <span class="header-item-icon"
-        ><i class="fa-solid fa-right-from-bracket"></i
-      ></span>
-      <span class="header-item-name">{% trans "Đăng xuất" %}</span>
-    </div>
+    <form action="{% url 'logout' %}" method="POST">
+      {% csrf_token %}
+      <button class="header-item" type="submit">
+        <span class="header-item-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+        <span class="header-item-name">{% trans "Đăng xuất" %}</span>
+      </button>
+    </form>
   </div>
 </div>
 

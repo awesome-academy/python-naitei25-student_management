@@ -1,0 +1,35 @@
+{% extends "other_generic.html" %} {% load static %} {% load i18n %} {% block title %}
+<title>Đăng Nhập</title>
+
+{% endblock %} {% block css %}
+<link rel="stylesheet" href="{% static 'css\registration\login.css' %}" />
+
+{% endblock %} {% block content %}
+<div class="login-page">
+  <div class="login-container">
+    <div class="login-title">{% trans "Đăng nhập" %}</div>
+
+    <form class="login-form" method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="login-form-item">
+        <input type="text" name="username" placeholder="{% trans 'Tên đăng nhập' %}" required />
+        <i class="fa-solid fa-user"></i>
+      </div>
+
+      <div class="login-form-item">
+        <input type="password" name="password" placeholder="{% trans 'Mật khẩu' %}" required />
+        <i class="fa-solid fa-key"></i>
+      </div>
+
+      <div class="login-line"></div>
+
+      <button class="login-btn default-btn secondary-btn large-btn" type="submit">{% trans "Đăng Nhập" %}</button>
+
+      {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+      {% endif %}
+    </form>
+  </div>
+</div>
+
+{% endblock %}

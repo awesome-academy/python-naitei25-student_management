@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-17 01:26+0700\n"
+"POT-Creation-Date: 2025-03-18 14:22+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\student_management\school\models.py:127
+#: .\student_management\school\models.py:145
 msgid "Mỗi lớp chỉ được có một giáo viên chủ nhiệm."
 msgstr "Each class can only have one homeroom teacher."
 
-#: .\student_management\school\models.py:132
+#: .\student_management\school\models.py:150
 msgid "Chỉ có giáo viên mới có thể được chỉ định vào lớp học."
 msgstr "Only teachers can be assigned to the class."
 
 #: .\student_management\school\templates\base_generic.html:5
+#: .\student_management\school\templates\other_generic.html:5
 msgid "Quản lý học sinh"
 msgstr "Student Management"
 
@@ -65,3 +66,23 @@ msgstr "Grading"
 #: .\student_management\school\templates\school\includes\sidebar.html:32
 msgid "Thống kê thành tích"
 msgstr "Performance statistics"
+
+#: .\student_management\school\templates\school\registration\login.html:10
+msgid "Đăng nhập"
+msgstr "Login"
+
+#: .\student_management\school\templates\school\registration\login.html:15
+msgid "Tên đăng nhập"
+msgstr "Username"
+
+#: .\student_management\school\templates\school\registration\login.html:20
+msgid "Mật khẩu"
+msgstr "Password"
+
+#: .\student_management\school\templates\school\registration\login.html:26
+msgid "Đăng Nhập"
+msgstr "Login"
+
+#: .\student_management\school\views\auth_views.py:30
+msgid "Email hoặc mật khẩu không đúng!"
+msgstr "Email or password is incorrect!"

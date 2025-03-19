@@ -1,0 +1,85 @@
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  width: 420px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px 30px;
+  border-radius: 20px;
+  box-shadow: var(--primary-shadow);
+  background-color: var(--primary);
+  color: var(--primary-text);
+}
+
+.login-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form-item {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  border-radius: 999px;
+}
+
+.login-form-item input {
+  height: 100%;
+  width: 100%;
+  padding-left: 40px;
+  border-radius: 999px;
+  color: var(--primary-text);
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.login-form-item input:focus {
+  border-color: var(--primary-text);
+}
+
+.login-form-item label {
+  position: absolute;
+}
+
+.login-form-item i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: calc(var(--font-size) + 2px);
+}
+
+input:-webkit-autofill {
+  background-color: transparent !important;
+  color: var(--primary-text) !important;
+  font-size: var(--font-size);
+  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+}
+
+.login-line {
+  height: 1px;
+  width: 100%;
+  background-color: var(--primary-text);
+  opacity: 0.25;
+}
+
+.login-btn {
+  width: 100%;
+}

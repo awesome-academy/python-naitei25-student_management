@@ -27,7 +27,6 @@ urlpatterns = (
         path("admin/", admin.site.urls),
         path("school/", include("school.urls")),
         path("", RedirectView.as_view(url="school/")),
-        path("accounts/", include("django.contrib.auth.urls")),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

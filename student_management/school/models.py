@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models.signals import post_save, post_delete, pre_save
 from django.dispatch import receiver
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
 from .constants import (
@@ -36,8 +37,10 @@ class Student(models.Model):
 
 
 # Giáo viên
-class Teacher(models.Model):
-    email = models.EmailField(max_length=EMAIL_MAX_LENGTH, unique=True)
+class Teacher(AbstractUser):
+    username = models.EmailField(
+        max_length=EMAIL_MAX_LENGTH, unique=True, default="username"
+    )
     password = models.CharField(max_length=CHAR_MAX_LENGTH)
     first_name = models.CharField(max_length=NAME_MAX_LENGTH)
     last_name = models.CharField(max_length=NAME_MAX_LENGTH)
@@ -54,6 +57,21 @@ class Teacher(models.Model):
     role = models.CharField(
         max_length=ROLE_MAX_LENGTH, choices=ROLE_CHOICES, default=Role.TEACHER.value
     )
+
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+
+    REQUIRED_FIELDS = [
+        "first_name",
+        "last_name",
+        "role",
+    ]
+
+    def save(self, *args, **kwargs):
+        if self.role == Role.ADMIN.value:
+            self.is_staff = True
+            self.is_superuser = True
+        super().save(*args, **kwargs)
 
 
 # Lớp học
