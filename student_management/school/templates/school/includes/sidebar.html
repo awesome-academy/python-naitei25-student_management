@@ -10,7 +10,7 @@
     <span class="sidebar-item-name">{% trans "Danh sách lớp học" %}</span>
   </a>
 
-  {% if request.resolver_match.url_name != 'class-list' %}
+  {% if request.resolver_match.url_name != 'class-list' and class_id and semester_id %}
   <a
     class="sidebar-item {% if 'student-list' in request.resolver_match.url_name %}active{% endif %}"
     href="{% url 'student-list' class_id semester_id %}"
@@ -24,12 +24,12 @@
     <span class="sidebar-item-name">{% trans "Điểm danh" %}</span>
   </a>
 
-  {% if is_homeroom_teacher %}
+  {% if subject_id %}
   <a class="sidebar-item" href="">
     <span class="sidebar-item-icon"><i class="fa-solid fa-pen-ruler"></i></span>
     <span class="sidebar-item-name">{% trans "Chấm điểm" %}</span>
   </a>
-  {% endif %} {% if is_subject_teacher %}
+  {% endif %} {% if is_homeroom %}
   <a class="sidebar-item" href="">
     <span class="sidebar-item-icon"><i class="fa-solid fa-ranking-star"></i></span>
     <span class="sidebar-item-name">{% trans "Thống kê thành tích" %}</span>

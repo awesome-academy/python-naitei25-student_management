@@ -1,0 +1,12 @@
+{% load static %} {% load i18n %} {% block css %}
+<link rel="stylesheet" href="{% static 'css\school\student.css' %}" />
+{% endblock %}
+
+<tr>
+  <th>{% trans "STT" %}</th>
+  <th>{% trans "Họ và tên" %}</th>
+  <th>{% trans "Mã số học sinh" %}</th>
+  <th>{% trans "Ngày sinh" %}</th>
+  <th>{% trans "Số điện thoại" %}</th>
+  <th>{% trans "Địa chỉ" %}</th>
+</tr>

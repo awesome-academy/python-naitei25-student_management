@@ -13,4 +13,9 @@ urlpatterns = [
         teacher_view.StudentListView.as_view(),
         name="student-list",
     ),
+    path(
+        "student/<int:pk>",
+        teacher_view.StudentDetailView.as_view(),
+        name="student-detail",
+    ),
 ]
