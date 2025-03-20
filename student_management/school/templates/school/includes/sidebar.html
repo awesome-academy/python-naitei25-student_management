@@ -2,20 +2,25 @@
 <div class="sidebar-logo">H&Q</div>
 
 <div class="sidebar-item-list">
-  <a class="sidebar-item active" href="">
+  <a
+    class="sidebar-item {% if request.resolver_match.url_name == 'class-list' %}active{% endif %}"
+    href="{% url 'class-list' %}"
+  >
     <span class="sidebar-item-icon"><i class="fa-solid fa-school"></i></span>
     <span class="sidebar-item-name">{% trans "Danh sách lớp học" %}</span>
   </a>
 
-  <a class="sidebar-item" href="">
+  {% if request.resolver_match.url_name != 'class-list' %}
+  <a
+    class="sidebar-item {% if 'student-list' in request.resolver_match.url_name %}active{% endif %}"
+    href="{% url 'student-list' class_id semester_id %}"
+  >
     <span class="sidebar-item-icon"><i class="fa-solid fa-list-ul"></i></span>
     <span class="sidebar-item-name">{% trans "Danh sách học sinh" %}</span>
   </a>
 
   <a class="sidebar-item" href="">
-    <span class="sidebar-item-icon"
-      ><i class="fa-solid fa-list-check"></i
-    ></span>
+    <span class="sidebar-item-icon"><i class="fa-solid fa-list-check"></i></span>
     <span class="sidebar-item-name">{% trans "Điểm danh" %}</span>
   </a>
 
@@ -26,10 +31,8 @@
   </a>
   {% endif %} {% if is_subject_teacher %}
   <a class="sidebar-item" href="">
-    <span class="sidebar-item-icon"
-      ><i class="fa-solid fa-ranking-star"></i
-    ></span>
+    <span class="sidebar-item-icon"><i class="fa-solid fa-ranking-star"></i></span>
     <span class="sidebar-item-name">{% trans "Thống kê thành tích" %}</span>
   </a>
-  {% endif %}
+  {% endif %} {% endif %}
 </div>

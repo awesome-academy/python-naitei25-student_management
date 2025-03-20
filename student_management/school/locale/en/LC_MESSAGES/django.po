@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-18 14:22+0700\n"
+"POT-Creation-Date: 2025-03-19 08:37+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,71 +18,90 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\student_management\school\models.py:145
+#: .\school\models.py:145
 msgid "Mỗi lớp chỉ được có một giáo viên chủ nhiệm."
 msgstr "Each class can only have one homeroom teacher."
 
-#: .\student_management\school\models.py:150
+#: .\school\models.py:150
 msgid "Chỉ có giáo viên mới có thể được chỉ định vào lớp học."
 msgstr "Only teachers can be assigned to the class."
 
-#: .\student_management\school\templates\base_generic.html:5
-#: .\student_management\school\templates\other_generic.html:5
+#: .\school\templates\base_generic.html:5
+#: .\school\templates\other_generic.html:5
 msgid "Quản lý học sinh"
 msgstr "Student Management"
 
-#: .\student_management\school\templates\school\includes\header.html:3
-msgid "Xin chào"
-msgstr "Hello"
+#: .\school\templates\school\classes\class_item.html:7
+msgid "Sĩ số:"
+msgstr "Class size:"
 
-#: .\student_management\school\templates\school\includes\header.html:5
-msgid "chúc bạn một ngày tốt lành!!!"
-msgstr "Have a nice day!!!"
+#: .\school\templates\school\classes\class_item.html:9
+msgid "Môn giảng dạy:"
+msgstr "Subjects taught:"
 
-#: .\student_management\school\templates\school\includes\header.html:36
-msgid "Ngôn ngữ: "
-msgstr "Language: "
-
-#: .\student_management\school\templates\school\includes\header.html:43
-msgid "Đăng xuất"
-msgstr "Logout"
-
-#: .\student_management\school\templates\school\includes\sidebar.html:7
+#: .\school\templates\school\classes\class_list.html:2
+#: .\school\templates\school\includes\sidebar.html:10
 msgid "Danh sách lớp học"
 msgstr "Class list"
 
-#: .\student_management\school\templates\school\includes\sidebar.html:12
+#: .\school\templates\school\classes\class_list.html:10
+msgid "Bạn chưa có lớp nào."
+msgstr "You don't have any classes yet."
+
+#: .\school\templates\school\includes\header.html:3
+msgid "Xin chào"
+msgstr "Hello"
+
+#: .\school\templates\school\includes\header.html:5
+msgid "chúc bạn một ngày tốt lành!!!"
+msgstr "Have a nice day!!!"
+
+#: .\school\templates\school\includes\header.html:36
+msgid "Ngôn ngữ: "
+msgstr "Language: "
+
+#: .\school\templates\school\includes\header.html:43
+msgid "Đăng xuất"
+msgstr "Logout"
+
+#: .\school\templates\school\includes\sidebar.html:19
+#: .\school\templates\school\students\student_list.html:2
 msgid "Danh sách học sinh"
 msgstr "Student list"
 
-#: .\student_management\school\templates\school\includes\sidebar.html:19
+#: .\school\templates\school\includes\sidebar.html:24
 msgid "Điểm danh"
 msgstr "Attendance"
 
-#: .\student_management\school\templates\school\includes\sidebar.html:25
+#: .\school\templates\school\includes\sidebar.html:30
 msgid "Chấm điểm"
 msgstr "Grading"
 
-#: .\student_management\school\templates\school\includes\sidebar.html:32
+#: .\school\templates\school\includes\sidebar.html:35
 msgid "Thống kê thành tích"
 msgstr "Performance statistics"
 
-#: .\student_management\school\templates\school\registration\login.html:10
+#: .\school\templates\school\registration\login.html:2
+#: .\school\templates\school\registration\login.html:10
 msgid "Đăng nhập"
 msgstr "Login"
 
-#: .\student_management\school\templates\school\registration\login.html:15
+#: .\school\templates\school\registration\login.html:15
 msgid "Tên đăng nhập"
 msgstr "Username"
 
-#: .\student_management\school\templates\school\registration\login.html:20
+#: .\school\templates\school\registration\login.html:20
 msgid "Mật khẩu"
 msgstr "Password"
 
-#: .\student_management\school\templates\school\registration\login.html:26
+#: .\school\templates\school\registration\login.html:26
 msgid "Đăng Nhập"
 msgstr "Login"
 
-#: .\student_management\school\views\auth_views.py:30
+#: .\school\templates\school\students\student_list.html:12
+msgid "Lớp không có học sinh."
+msgstr "This class has no students."
+
+#: .\school\views\auth_views.py:21
 msgid "Email hoặc mật khẩu không đúng!"
 msgstr "Email or password is incorrect!"

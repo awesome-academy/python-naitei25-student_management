@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %} {% load static %} {% load i18n %} 
+
+{% block title %}
+<title>{% trans "Danh sách lớp học" %}</title>
+{% endblock %} 
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css\school\class.css' %}" />
+{% endblock %} 
+
+{% block content %}
+<div class="class-list-page">
+  {% for class in classes %} {% include "school\classes\class_item.html" with class=class %} {% empty %}
+  <p>{% trans "Bạn chưa có lớp nào." %}</p>
+  {% endfor %}
+</div>
+{% endblock %}

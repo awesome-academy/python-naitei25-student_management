@@ -9,6 +9,7 @@
   "arrowParens": "always",
   "endOfLine": "lf",
   "printWidth": 120,
+  "djangoFormat": true,
   "overrides": [
     {
       "files": "*.html",
@@ -20,12 +21,6 @@
       "files": "*.css",
       "options": {
         "parser": "css"
-      }
-    },
-    {
-      "files": ["*.djhtml", "*.django-html"],
-      "options": {
-        "parser": "angular"
       }
     }
   ]
