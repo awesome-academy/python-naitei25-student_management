@@ -10,6 +10,7 @@ from .models import (
     Teacher,
     ClassTeacher,
     Grade,
+    Attendance,
 )
 
 # Register your models here.
@@ -22,3 +23,4 @@ admin.site.register(Subject)
 admin.site.register(Teacher)
 admin.site.register(ClassTeacher)
 admin.site.register(Grade)
+admin.site.register(Attendance)

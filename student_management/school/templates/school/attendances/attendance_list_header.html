@@ -1,0 +1,14 @@
+{% load static %} {% load i18n %} {% block css %}
+<link rel="stylesheet" href="{% static 'css\school\attendance.css' %}" />
+{% endblock %}
+
+<tr>
+  <th>{% trans "STT" %}</th>
+  <th>{% trans "Ảnh đại diện" %}</th>
+  <th>{% trans "Họ và tên" %}</th>
+  <th>{% trans "Mã số học sinh" %}</th>
+  <th>{% trans "Đi muộn" %}</th>
+  <th>{% trans "Nghỉ có phép" %}</th>
+  <th>{% trans "Nghỉ không phép" %}</th>
+  <th>{% trans "Điểm danh" %}</th>
+</tr>

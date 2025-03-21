@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 # from . import views
-from school.views import auth_views, teacher_view
+from school.views import auth_views, teacher_view, action_views
 
 # Khai báo view tương ứng với url
 urlpatterns = [
@@ -17,5 +17,15 @@ urlpatterns = [
         "student/<int:pk>",
         teacher_view.StudentDetailView.as_view(),
         name="student-detail",
+    ),
+    path(
+        "class/<int:class_id>/semester/<int:semester_id>/attendances",
+        teacher_view.AttendancesView.as_view(),
+        name="attendance-tracking",
+    ),
+    path(
+        "attendance/tracking/",
+        action_views.post_attendance,
+        name="tracking",
     ),
 ]

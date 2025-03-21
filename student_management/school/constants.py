@@ -13,8 +13,16 @@ ROLE_MAX_LENGTH = 10
 SCORE_MAX_DIGITS = 4
 SCORE_DECIMAL_PLACES = 2
 HOMEROOM_DEFAULT = False
+STATUS_MAX_LENGTH = 10
 
 
 class Role(Enum):
     TEACHER = "teacher"
     ADMIN = "admin"
+
+
+class AttendanceStatus(Enum):
+    PRESENT = "present"
+    LATE = "late"
+    EXCUSED = "excused"
+    ABSENT = "absent"

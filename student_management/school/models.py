@@ -21,6 +21,8 @@ from .constants import (
     SCORE_MAX_DIGITS,
     SCORE_DECIMAL_PLACES,
     HOMEROOM_DEFAULT,
+    AttendanceStatus,
+    STATUS_MAX_LENGTH,
 )
 
 
@@ -154,6 +156,47 @@ class ClassTeacher(models.Model):
         """Kiểm tra ràng buộc trước khi lưu."""
         self.clean()
         super().save(*args, **kwargs)
+
+
+# Điểm danh
+class Attendance(models.Model):
+    classstudent = models.ForeignKey(ClassStudent, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    STATUS_CHOICES = [
+        (AttendanceStatus.PRESENT.value, "Có mặt"),
+        (AttendanceStatus.LATE.value, "Đi muộn"),
+        (AttendanceStatus.EXCUSED.value, "Nghỉ có phép"),
+        (AttendanceStatus.ABSENT.value, "Nghỉ không phép"),
+    ]
+    status = models.CharField(
+        max_length=STATUS_MAX_LENGTH,
+        choices=STATUS_CHOICES,
+        default=AttendanceStatus.PRESENT.value,
+    )
+
+    class Meta:
+        unique_together = ("classstudent", "date")
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.update_classstudent_attendance()
+
+    def update_classstudent_attendance(self):
+        classstudent = self.classstudent
+
+        classstudent.late_time = Attendance.objects.filter(
+            classstudent=classstudent, status="late"
+        ).count()
+
+        classstudent.absent_time = Attendance.objects.filter(
+            classstudent=classstudent, status="absent"
+        ).count()
+
+        classstudent.excused_time = Attendance.objects.filter(
+            classstudent=classstudent, status="excused"
+        ).count()
+
+        classstudent.save()
 
 
 # Điểm số môn học

@@ -1,0 +1,22 @@
+{% load static %} {% load i18n %} {% block css %}
+<link rel="stylesheet" href="{% static 'css\school\attendance.css' %}" />
+{% endblock %}
+
+<td>{{ index }}</td>
+<td>
+  {% if attendance.classstudent.student.avatar %}
+  <img class="attendance-avatar" src="{{ attendance.classstudent.student.avatar }}" alt="Avatar" />
+  {% else %}
+  <img class="attendance-avatar" src="{% static 'images/avt.jpg' %}" alt="Avatar" />
+  {% endif %}
+</td>
+<td>
+  <a class="student-item-name" href="{% url 'student-detail' attendance.classstudent.student.id %}"
+    >{{attendance.classstudent.student.first_name}} {{attendance.classstudent.student.last_name}}</a
+  >
+</td>
+<td>{{ attendance.classstudent.student.id }}</td>
+<td>{{ attendance.classstudent.late_time }}</td>
+<td>{{ attendance.classstudent.excused_time}}</td>
+<td>{{ attendance.classstudent.absent_time }}</td>
+<td>{{ form.status }}{{ form.classstudent_id }}</td>
