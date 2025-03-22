@@ -1,0 +1,15 @@
+{% load static %} {% load i18n %} {% block css %}
+<link rel="stylesheet" href="{% static 'css\school\grade.css' %}" />
+{% endblock %}
+
+<tr>
+  <th>{% trans "STT" %}</th>
+  <th>{% trans "Họ và tên" %}</th>
+  <th>{% trans "Mã số học sinh" %}</th>
+  <th>{% trans "Điểm miệng" %}</th>
+  <th>{% trans "Điểm 15 phút" %}</th>
+  <th>{% trans "Điểm 1 tiết" %}</th>
+  <th>{% trans "Điểm giữa kỳ" %}</th>
+  <th>{% trans "Điểm cuối kỳ" %}</th>
+  <th>{% trans "Điểm tổng kết" %}</th>
+</tr>

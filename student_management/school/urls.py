@@ -28,4 +28,14 @@ urlpatterns = [
         action_views.post_attendance,
         name="tracking",
     ),
+    path(
+        "class/<int:class_id>/semester/<int:semester_id>/subject/<int:subject_id>",
+        teacher_view.GradeView.as_view(),
+        name="grade",
+    ),
+    path(
+        "grade/update/",
+        action_views.post_grade,
+        name="grade-update",
+    ),
 ]

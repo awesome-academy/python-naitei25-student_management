@@ -201,12 +201,7 @@ class Attendance(models.Model):
 
 # Điểm số môn học
 class Grade(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    semester = models.ForeignKey(
-        Semester,
-        on_delete=models.SET_NULL,
-        null=True,
-    )
+    classstudent = models.ForeignKey(ClassStudent, on_delete=models.CASCADE, null=True)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     oral_score = models.DecimalField(
         max_digits=SCORE_MAX_DIGITS,
@@ -246,17 +241,12 @@ class Grade(models.Model):
     )  # Điểm tổng kết môn học
 
     class Meta:
-        unique_together = ("student", "subject", "semester")
+        unique_together = ("classstudent", "subject")
 
 
 # Xếp loại
 class Classification(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    semester = models.ForeignKey(
-        Semester,
-        on_delete=models.SET_NULL,
-        null=True,
-    )
+    classstudent = models.ForeignKey(ClassStudent, on_delete=models.CASCADE, null=True)
     gpa = models.DecimalField(
         max_digits=SCORE_MAX_DIGITS,
         decimal_places=SCORE_DECIMAL_PLACES,
@@ -264,9 +254,6 @@ class Classification(models.Model):
         blank=True,
     )
     rank = models.CharField(max_length=RANK_MAX_LENGTH, null=True, blank=True)
-
-    class Meta:
-        unique_together = ("student", "semester")
 
 
 # Tạo bảng điểm cho học sinh khi được thêm vào lớp
@@ -276,8 +263,7 @@ def create_student_grades(sender, instance, created, **kwargs):
         subjects = Subject.objects.all()
         for subject in subjects:
             Grade.objects.create(
-                student=instance.student,
-                semester=instance.semester,
+                classstudent=instance,
                 subject=subject,
             )
 
@@ -310,15 +296,12 @@ def update_final_grade(sender, instance, **kwargs):
 # Cập nhật gpa và xếp loại
 @receiver([post_save, post_delete], sender=Grade)
 def update_gpa(sender, instance, **kwargs):
-    student = instance.student
-    semester = instance.semester
-
     # Tổng số môn học trong học kỳ này
-    total_subjects = Grade.objects.filter(student=student, semester=semester).count()
+    total_subjects = Grade.objects.filter(classstudent=instance.classstudent).count()
 
     # Số môn học đã có final_score
     subjects_with_score = (
-        Grade.objects.filter(student=student, semester=semester)
+        Grade.objects.filter(classstudent=instance.classstudent)
         .exclude(final_score=None)
         .count()
     )
@@ -326,7 +309,7 @@ def update_gpa(sender, instance, **kwargs):
     # Cập nhật khi đã có hết điểm
     if total_subjects == subjects_with_score and total_subjects > 0:
         avg_gpa = (
-            Grade.objects.filter(student=student, semester=semester).aggregate(
+            Grade.objects.filter(classstudent=instance.classstudent).aggregate(
                 avg_gpa=models.Avg("final_grade")
             )["avg_gpa"]
             or 0
@@ -343,8 +326,7 @@ def update_gpa(sender, instance, **kwargs):
             rank = "Yếu"
 
         classification, created = Classification.objects.update_or_create(
-            student=instance.student,
-            semester=instance.semester,
+            classstudent=instance.classstudent,
             defaults={"gpa": avg_gpa, "rank": rank},
         )
 

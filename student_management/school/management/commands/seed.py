@@ -145,10 +145,13 @@ class Command(BaseCommand):
         # Thêm điểm cho mỗi học sinh
         for student in students:
             for semester in semesters:
+                classstudent = ClassStudent.objects.filter(
+                    student=student,
+                    semester=semester,
+                ).first()
                 for subject in subjects:
                     Grade.objects.update_or_create(
-                        student=student,
-                        semester=semester,
+                        classstudent=classstudent,
                         subject=subject,
                         defaults={
                             "oral_score": Decimal(str(round(random.uniform(5, 10), 2))),
